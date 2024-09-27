@@ -40,21 +40,21 @@ const validateForm = () => {
         body: formDetails
       });
 
+      // console.log(response)
       const data = await response.json();
-
-      setLoading(false);
+      // console.log(data)
+      // setLoading(false);
 
       console.log('Login successful:', data);
       // Handle successful login (e.g., store token, redirect to dashboard)
+      localStorage.setItem('token', data.access_token);
       navigate('/protected');
-      localStorage.setItem('token', data.token);
    } catch (error) {
       console.error('Login failed:', error);
       //setError(error.response?.data?.detail || 'An error occurred during login');
       setError('An error occurred during login');
 
     } 
-
 };
 
   return (

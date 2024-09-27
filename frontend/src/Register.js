@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function Register() {
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -32,7 +33,7 @@ function Register() {
 
 
     const formDetails = new URLSearchParams();
-    //formDetails.append('username', username);
+    formDetails.append('username', username);
     formDetails.append('email', email);
     formDetails.append('password', password);
 

@@ -16,6 +16,9 @@ from models import User
 from schemas import UserCreate, UserLogin
 
 
+class Token(BaseModel):
+    token: str
+
 #Create the database
 
 #Setup logging
@@ -30,7 +33,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 origins = [
     "http://localhost:3000",
-    "http://localhost:8000",
+    # "http://localhost:8000",
 ]
 
 # CORS setup
@@ -101,15 +104,17 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
 
 
 #create a function to verify the token
-def verify_token(token: str = Depends(oauth2_scheme)):
+def verify_token(token: Token):
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        payload = jwt.decode(token.token, SECRET_KEY, algorithms=[ALGORITHM])
         username: str = payload.get("sub")
         if username is None:
             raise HTTPException(status_code=400, detail="Invalid token")
         return username
     except JWTError:
         raise HTTPException(status_code=400, detail="Invalid token")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 
 
 # Routes for user registration and login
@@ -143,12 +148,20 @@ def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db:
     )
     return {"access_token": access_token, "token_type": "bearer"}
 
-@app.get("/verify-token/{token}")
-async def verify_user_token(token: str = None):
+# @app.get("/verify-token/{token}")
+
+
+
+@app.post("/verify-token/")
+async def verify_user_token(token:Token):
+    print(token)
     if token is None:
         raise HTTPException(status_code=400, detail="Token is required")
-    verify_token(token=token)
-    return {"message": "Token is valid"}
+    token_data = verify_token(token=token)
+    if token_data is None:
+        raise HTTPException(status_code=400, detail="Toke verification failed")
+    else:
+        return {"message": "Token is valid","status":"success"}
 
 
 
