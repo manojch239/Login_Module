@@ -1,5 +1,6 @@
 from sqlalchemy import Column, Integer, String
 from database import Base
+from database import engine
 
 class User(Base):
     __tablename__ = "users"
@@ -8,3 +9,8 @@ class User(Base):
     username = Column(String, unique=True, index=True)
     email = Column(String, unique=True, index=True)
     hashed_password = Column(String)
+
+#Create the database
+Base.metadata.create_all(bind=engine)
+
+
