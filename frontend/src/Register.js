@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+//import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function Register() {
   const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
+  //const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
@@ -13,7 +13,7 @@ function Register() {
   const navigate = useNavigate();
 
   const validateForm = () => {
-    if (!email || !password || !confirmPassword) {
+    if (!username || !password || !confirmPassword) { //changed the email to username for the register form
       setError('All fields are required');
       return false;
     }
@@ -34,7 +34,7 @@ function Register() {
 
     const formDetails = new URLSearchParams();
     formDetails.append('username', username);
-    formDetails.append('email', email);
+    //formDetails.append('email', email);
     formDetails.append('password', password);
 
     try {
@@ -65,20 +65,37 @@ function Register() {
   };
 
   return (
-    <form className="register-form" onSubmit={handleSubmit}>
-      {error && <div className="error-message">{error}</div>}
+    // <form className="register-form" onSubmit={handleSubmit}>
+    //   {error && <div className="error-message">{error}</div>}
+    //   <div className="form-group">
+    //     <label htmlFor="email">Email</label>
+    //     <input 
+    //       type="email" 
+    //       id="email" 
+    //       name="email" 
+    //       required 
+    //       value={email}
+    //       onChange={(e) => setEmail(e.target.value)}
+    //       disabled={loading}
+    //     />
+    //   </div>
+
+
+<form className="register-form" onSubmit={handleSubmit}>
+  {error && <div className="error-message">{error}</div>}
       <div className="form-group">
-        <label htmlFor="email">Email</label>
+        <label htmlFor="username">Username</label>
         <input 
-          type="email" 
-          id="email" 
-          name="email" 
+          type="username" 
+          id="username" 
+          name="username" 
           required 
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           disabled={loading}
         />
-      </div>
+        </div>
+ {/* ---------------------------------------------------------------------------------------- */}
       <div className="form-group">
         <label htmlFor="password">Password</label>
         <input 

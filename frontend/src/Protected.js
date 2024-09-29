@@ -1,11 +1,17 @@
 import React from 'react';
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import axios from 'axios';
+//import axios from 'axios';
 
 
 function ProtectedPage() {
     const navigate = useNavigate();
+
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/');
+    };
 
     useEffect(() => {
         console.log("test")
@@ -68,7 +74,14 @@ function ProtectedPage() {
         verifyToken();
     }, []);
     
-    return <div>Hello User, Welcome to the Protected Page</div>;
+    return (
+    <div>
+        <button onClick={handleLogout} style={{ position: 'absolute', top: '10px', right: '10px' }}>
+            Logout
+        </button>
+        <div>Hello User, Welcome to the Protected Page</div>
+        </div>
+    );
 }
 
 export default ProtectedPage;

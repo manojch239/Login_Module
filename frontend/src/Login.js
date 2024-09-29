@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useEffect } from "react"
 //import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,6 +10,15 @@ function Login() {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+
+// Keep the user logged in if the token is still valid
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate('/protected');
+    }
+  }, [navigate])
+
 
 
 // validate the form
