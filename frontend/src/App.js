@@ -30,6 +30,15 @@ function App() {
               </button>
             </div>
           } />
+          <Route path="/login" element={
+            <div className="login-container">
+              <h2 className="login-title">Login</h2>
+              <Login />
+              <button onClick={toggleForm} className="toggle-form">
+                Don't have an account? Register here
+              </button>
+            </div>
+          } />  // Updated Login route to match the "/" structure
           <Route path="/protected" element={
             <PrivateRoute>
               <ProtectedPage />

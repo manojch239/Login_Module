@@ -32,28 +32,37 @@ function Register() {
     setError('');
 
 
-    const formDetails = new URLSearchParams();
-    formDetails.append('username', username);
+    // const formDetails = new URLSearchParams();
+    // formDetails.append('username', username);
     //formDetails.append('email', email);
-    formDetails.append('password', password);
+    // formDetails.append('password', password);
+    // formDetails.append('confirmPassword', confirmPassword);
+
+
+    const formDetails = {
+      username : username,
+      password : password,
+    };
 
     try {
       const response = await fetch('http://localhost:8000/register/', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
+          'Content-Type': 'application/json' // changed the format from "x-www-form-urlencoded" to "json"
+          // 'Authorization': `Bearer`
         },
-        body: formDetails
+        body: JSON.stringify(formDetails)
       });
 
       const data = await response.json();
+      console.log(data)
 
       setLoading(false);
 
     //change response.data to data and error.response?.data to error  
       console.log('Registration successful:', data);
-      if (data.token) {
-        localStorage.setItem('token', data.token);
+      if ("message" in data && data.message) {
+        localStorage.setItem('message', data.message);
         navigate('/login');
       }
     } catch (error) {

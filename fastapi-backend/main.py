@@ -72,7 +72,8 @@ def get_user_by_username(db, username: str):
 #create a new user
 def create_user(db, user: UserCreate):
     hashed_password = get_password_hash(user.password)
-    db_user = User(username=user.username, email=user.email, hashed_password=hashed_password)
+    # db_user = User(username=user.username, email=user.email, hashed_password=hashed_password)
+    db_user = User(username=user.username, hashed_password=hashed_password)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
@@ -120,14 +121,14 @@ def verify_token(token: Token):
 # Routes for user registration and login
 @app.post("/register/")
 def register_user(user: UserCreate, db: Session = Depends(get_db)):
-    try:
+    try:  
         logger.info(f"Received registration request: {user}")
         db_user = get_user_by_username(db, username=user.username)
         if db_user:
             raise HTTPException(status_code=400, detail="Username already exists")
         result = create_user(db=db, user=user)  
         logger.info(f"User registration successful: {result}")
-        return {"message": result}
+        return {"message": result} 
     except Exception as e:
         logger.error(f"Error during user registration: {str(e)}")
         raise HTTPException(status_code=500, detail= f"Internal server error : {str(e)}")
@@ -154,7 +155,7 @@ def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db:
 
 @app.post("/verify-token/")
 async def verify_user_token(token:Token):
-    print(token)
+    # print(token)
     if token is None:
         raise HTTPException(status_code=400, detail="Token is required")
     token_data = verify_token(token=token)
