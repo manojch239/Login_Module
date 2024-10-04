@@ -8,6 +8,13 @@
   font-family: 'Arial', sans-serif; /* Modern font */
 }
 
+
+.avatar {
+  position: absolute; /* Use absolute positioning */
+    top: 10px; /* Adjust top position */
+    right: 10px;
+}
+
 .login-container {
   background-color: white;
   padding: 2rem;

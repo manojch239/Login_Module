@@ -1,17 +1,47 @@
 import React from 'react';
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+import { Avatar,Dropdown,Menu } from 'antd';
+import { UserOutlined,DownOutlined } from '@ant-design/icons';
 //import axios from 'axios';
 //TODO : create an avatar in the protected page using ant d
 
+
+// const {  UserOutlined  } = icons;
+//const {  Avatar, Space  } = antd;
+
+
 function ProtectedPage() {
     const navigate = useNavigate();
+    
 
 
     const handleLogout = () => {
         localStorage.removeItem('token');
         navigate('/');
     };
+
+
+    const handleMenuClick = (e) => {
+        if (e.key === '1') {
+            console.log('Profile clicked');
+            // Navigate to profile page or handle profile action
+        } else if (e.key === '2') {
+            console.log('Settings clicked');
+            // Navigate to settings page or handle settings action
+        } else if (e.key === '3') {
+            handleLogout(); // Logout action
+        }
+    };
+
+    const menu = (
+        <Menu onClick={handleMenuClick}>
+            <Menu.Item key="1">Profile</Menu.Item>
+            <Menu.Item key="2">Settings</Menu.Item>
+            <Menu.Item key="3">Logout</Menu.Item>
+        </Menu>
+    );
+
 
     useEffect(() => {
         console.log("test")
@@ -75,12 +105,14 @@ function ProtectedPage() {
     }, []);
     
     return (
-    <div>
-        <button onClick={handleLogout} style={{ position: 'absolute', top: '10px', right: '10px' }}>
-            Logout
-        </button>
-        <div>Hello User, Welcome to the Protected Page</div>
+       <div>
+            <div className='avatar'>
+                <Dropdown overlay = {menu} trigger={['click']}>
+                    <Avatar size={48} icon={<UserOutlined />} style={{ cursor: 'pointer' }} />
+                </Dropdown>
         </div>
+        <div>Hello User, Welcome to the Protected Page</div>
+    </div>
     );
 }
 
