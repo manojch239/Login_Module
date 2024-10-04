@@ -9,7 +9,6 @@ function Register() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-
   const navigate = useNavigate();
 
   const validateForm = () => {
@@ -56,7 +55,15 @@ function Register() {
 
       const data = await response.json();
       console.log(data)
-
+      if(!response.ok){
+        if (data.detail === "Username already exists") {
+          alert(data.detail);
+        }
+        else {
+          setError(data.detail);
+        } return;
+      }
+        // return;
       setLoading(false);
 
     //change response.data to data and error.response?.data to error  

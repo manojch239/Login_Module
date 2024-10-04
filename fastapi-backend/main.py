@@ -104,6 +104,7 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     return encoded_jwt
 
 
+
 #create a function to verify the token
 def verify_token(token: Token):
     try:
@@ -129,6 +130,9 @@ def register_user(user: UserCreate, db: Session = Depends(get_db)):
         result = create_user(db=db, user=user)  
         logger.info(f"User registration successful: {result}")
         return {"message": result} 
+    except HTTPException as http_exc:
+        logger.error(f"HTTP error during user registration :{http_exc.detail}")
+        raise http_exc
     except Exception as e:
         logger.error(f"Error during user registration: {str(e)}")
         raise HTTPException(status_code=500, detail= f"Internal server error : {str(e)}")

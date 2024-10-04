@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import {Spin } from 'antd';
 import Login from './Login';
 import Register from './Register';
 import ProtectedPage from './Protected';
 import './App.css';
 
 function App() {
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(true);  
+  const [loading, setLoading] = useState(true);
 
   const toggleForm = () => {
     setIsLogin(!isLogin);
@@ -17,9 +19,20 @@ function App() {
     return token ? children : <Navigate to="/" />;
   };
 
+useEffect(() => {
+  const timer = setTimeout(()=> {
+    setLoading(false);
+  },2000);
+  return () => clearTimeout(timer);
+},[]);
+
+
   return (
     <Router>
       <div className="App">
+        {loading?(
+          <Spin size = "large" />
+        ) : ( 
         <Routes>
           <Route path="/" element={
             <div className="login-container">
@@ -45,6 +58,7 @@ function App() {
             </PrivateRoute>
           } />
         </Routes>
+        )}
       </div>
     </Router>
   );
