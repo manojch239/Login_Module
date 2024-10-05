@@ -25,6 +25,7 @@ function Login() {
 const validateForm = () => {
   if (!username || !password) {
     setError('Username and password are required');
+    message.warning('Username and password are required');
     return false;
   }
   setError('');
