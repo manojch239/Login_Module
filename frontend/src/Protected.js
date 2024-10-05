@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { Avatar,Dropdown,Menu } from 'antd';
+import { Avatar,Dropdown,Menu,message } from 'antd';
 import { UserOutlined,DownOutlined } from '@ant-design/icons';
 //import axios from 'axios';
 //TODO : create an avatar in the protected page using ant d
@@ -86,6 +86,8 @@ function ProtectedPage() {
 
                 if("status" in data && data.status === "success"){
                     console.log("Token verification successful")
+                    message.success('Login successful!')
+
                 }
                 else{
                     console.log("Token verification failed")

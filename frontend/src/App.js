@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import {Spin } from 'antd';
+import { message } from 'antd';
 import Login from './Login';
 import Register from './Register';
 import ProtectedPage from './Protected';
@@ -9,6 +10,12 @@ import './App.css';
 function App() {
   const [isLogin, setIsLogin] = useState(true);  
   const [loading, setLoading] = useState(true);
+
+
+  message.config({
+    top: 630, // Adjust this value to position the message
+    duration: 3, // Duration for which the message will be displayed
+  });
 
   const toggleForm = () => {
     setIsLogin(!isLogin);

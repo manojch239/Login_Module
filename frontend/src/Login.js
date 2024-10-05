@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useEffect } from "react"
 //import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { message } from 'antd';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -25,6 +26,7 @@ function Login() {
 const validateForm = () => {
   if (!username || !password) {
     setError('Username and password are required');
+    message.warning('Username and password are required')
     return false;
   }
   setError('');
@@ -63,6 +65,7 @@ const validateForm = () => {
       console.error('Login failed:', error);
       //setError(error.response?.data?.detail || 'An error occurred during login');
       setError('An error occurred during login');
+      message.error('An error occurred during login')
 
     } 
 };

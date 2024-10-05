@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 //import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { message } from 'antd'; // Import Ant Design message
+
+
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -11,13 +14,17 @@ function Register() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+ 
+
   const validateForm = () => {
     if (!username || !password || !confirmPassword) { //changed the email to username for the register form
       setError('All fields are required');
+      message.warning('All fields are required')
       return false;
     }
     if (password !== confirmPassword) {
-      setError("Passwords don't match");
+      //setError("Passwords don't match");
+      message.warning("Passwords don't match");
       return false;
     }
     setError('');
@@ -57,7 +64,7 @@ function Register() {
       console.log(data)
       if(!response.ok){
         if (data.detail === "Username already exists") {
-          alert(data.detail);
+          message.error(data.detail);
         }
         else {
           setError(data.detail);
@@ -68,6 +75,7 @@ function Register() {
 
     //change response.data to data and error.response?.data to error  
       console.log('Registration successful:', data);
+      message.success('Registration successful')
       if ("message" in data && data.message) {
         localStorage.setItem('message', data.message);
         navigate('/login');
@@ -75,6 +83,7 @@ function Register() {
     } catch (error) {
       console.error('Registration failed:', error);
       setError('An error occurred during registration');
+      message.error('An error occurred during registration')
     } finally {
       setLoading(false);
     }
@@ -98,7 +107,7 @@ function Register() {
 
 
 <form className="register-form" onSubmit={handleSubmit}>
-  {error && <div className="error-message">{error}</div>}
+      {error && <div className="error-message">{error}</div>}
       <div className="form-group">
         <label htmlFor="username">Username</label>
         <input 
