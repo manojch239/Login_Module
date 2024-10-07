@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useEffect } from "react"
+import { message } from 'antd';
 //import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { message } from 'antd';
@@ -26,7 +27,11 @@ function Login() {
 const validateForm = () => {
   if (!username || !password) {
     setError('Username and password are required');
+<<<<<<< HEAD
     message.warning('Username and password are required')
+=======
+    message.warning('Username and password are required');
+>>>>>>> antd_test
     return false;
   }
   setError('');

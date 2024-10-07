@@ -1,10 +1,25 @@
 import React from 'react';
+<<<<<<< HEAD
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { Avatar,Dropdown,Menu,message } from 'antd';
 import { UserOutlined,DownOutlined } from '@ant-design/icons';
 //import axios from 'axios';
 //TODO : create an avatar in the protected page using ant d
+=======
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Layout, Menu, Avatar, Dropdown, message } from 'antd';
+import {
+     UserOutlined,
+    DesktopOutlined,
+    FileOutlined,
+    PieChartOutlined,
+    TeamOutlined,
+    } from '@ant-design/icons';
+
+const { Header, Content, Sider } = Layout;
+>>>>>>> antd_test
 
 
 // const {  UserOutlined  } = icons;
@@ -21,6 +36,7 @@ function ProtectedPage() {
         navigate('/');
     };
 
+<<<<<<< HEAD
 
     const handleMenuClick = (e) => {
         if (e.key === '1') {
@@ -31,6 +47,15 @@ function ProtectedPage() {
             // Navigate to settings page or handle settings action
         } else if (e.key === '3') {
             handleLogout(); // Logout action
+=======
+    const handleMenuClick = (e) => {
+        if (e.key === '1') {
+            console.log('Profile clicked');
+        } else if (e.key === '2') {
+            console.log('Settings clicked');
+        } else if (e.key === '3') {
+            handleLogout();
+>>>>>>> antd_test
         }
     };
 
@@ -42,23 +67,20 @@ function ProtectedPage() {
         </Menu>
     );
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> antd_test
     useEffect(() => {
-        console.log("test")
         const verifyToken = async () => {
             const token = localStorage.getItem('token');
-              console.log(token)
-            // Check if the token is exists and valid
-              if (!token){
-                console.log("No Token found, redirecting to login page")
+            if (!token) {
                 localStorage.removeItem('token');
                 navigate('/');
                 return;
             }
 
-             const formDetails = {token};
-            // formDetails.append('token', token);
-
+            const formDetails = { token };
 
             try {
                 const response = await fetch(`http://localhost:8000/verify-token/`, {
@@ -70,14 +92,8 @@ function ProtectedPage() {
                     body: JSON.stringify(formDetails)
                 });
                 const data = await response.json();
-                //     {
-                //     method: 'POST',
-                //     headers: {
-                //         'Content-Type': 'application/json',
-                //         'Authorization': `Bearer ${token}`
-                //     }
-                // });
 
+<<<<<<< HEAD
                 // const data = await response.json();
                 console.log(data)
                 // if (!data.status === "success"){
@@ -91,13 +107,15 @@ function ProtectedPage() {
                 }
                 else{
                     console.log("Token verification failed")
+=======
+                if ("status" in data && data.status === "success") {
+                    message.success('Login successful!');
+                } else {
+>>>>>>> antd_test
                     localStorage.removeItem('token');
                     navigate('/');
                 }
-
-
             } catch (error) {
-                //console.log("error_123")
                 console.error('Token verification failed:', error);
                 localStorage.removeItem('token');
                 navigate('/');
@@ -105,8 +123,9 @@ function ProtectedPage() {
         };
         verifyToken();
     }, []);
-    
+
     return (
+<<<<<<< HEAD
             <div>
                 <div className='avatar' style={{position:'absolute',top: 0, right: 0,margin: '10px'}}>
                     <Dropdown overlay={menu} trigger={['click']}>
@@ -115,6 +134,41 @@ function ProtectedPage() {
                 </div>
                 <div>Hello User, Welcome to the Protected Page</div>
             </div>
+=======
+        <Layout style={{ minHeight: '100vh' }}>
+            <Sider collapsible>
+                <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+                    <Menu.Item key="1" icon={<DesktopOutlined />}>
+                        Desktop
+                    </Menu.Item>
+                    <Menu.Item key="2" icon={<UserOutlined />}>
+                        User
+                    </Menu.Item>
+                    <Menu.Item key="3" icon={<TeamOutlined />}>
+                        Team
+                    </Menu.Item>
+                    <Menu.Item key="4" icon={<PieChartOutlined />}>
+                        Analysis
+                    </Menu.Item>
+                    <Menu.Item key="4" icon={<FileOutlined />}>
+                        Storage
+                    </Menu.Item>
+                </Menu>
+            </Sider>
+            <Layout>
+                <Header style={{ background: '#fff', padding: 0 }}>
+                    <div className='avatar' style={{ position: 'absolute', top: 0, right: 0, margin: '10px' }}>
+                        <Dropdown menu={menu} trigger={['click']}>
+                            <Avatar size={48} icon={<UserOutlined />} style={{ cursor: 'pointer' }} />
+                        </Dropdown>
+                    </div>
+                </Header>
+                <Content style={{ margin: '24px 16px', padding: 24, background: '#fff' }}>
+                   <div className='text-cyan-300'> Hello User, Welcome to the Protected Page</div>
+                </Content>
+            </Layout>
+        </Layout>
+>>>>>>> antd_test
     );
 }
 
