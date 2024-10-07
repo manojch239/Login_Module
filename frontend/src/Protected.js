@@ -107,15 +107,14 @@ function ProtectedPage() {
     }, []);
     
     return (
-       <div>
-                <div className='avatar'>
+            <div>
+                <div className='avatar' style={{position:'absolute',top: 0, right: 0,margin: '10px'}}>
                     <Dropdown overlay={menu} trigger={['click']}>
                         <Avatar size={48} icon={<UserOutlined />} style={{ cursor: 'pointer' }} />
                     </Dropdown>
                 </div>
                 <div>Hello User, Welcome to the Protected Page</div>
             </div>
-        </div>
     );
 }
 
