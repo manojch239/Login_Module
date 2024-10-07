@@ -1,0 +1,132 @@
+.App {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f7f9fc; /* Softer background color */
+  font-family: 'Arial', sans-serif; /* Modern font */
+}
+
+.login-container {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px; /* Slightly larger border radius */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Deeper shadow for depth */
+  width: 100%;
+  max-width: 400px;
+  transition: transform 0.3s; /* Smooth hover effect */
+}
+
+.login-container:hover {
+  transform: translateY(-5px); /* Subtle lift on hover */
+}
+
+.login-title {
+  font-size: 28px; /* Increased font size */
+  font-weight: 700; /* Bolder title */
+  color: #333; /* Darker text for better contrast */
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 1.5rem; /* Increased spacing */
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600; /* Bolder label */
+  color: #555; /* Softer label color */
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d1d1d1; /* Softer border color */
+  border-radius: 6px; /* Slightly larger border radius */
+  font-size: 16px;
+  transition: border-color 0.2s; /* Smooth border color transition */
+}
+
+.form-group input:focus {
+  border-color: #1877f2; /* Highlight border on focus */
+  outline: none; /* Remove default outline */
+}
+
+.login-button, .register-button {
+  background-color: #1877f2;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 6px; /* Slightly larger border radius */
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s; /* Added transform transition */
+}
+
+.login-button:hover, .register-button:hover {
+  background-color: #166fe5;
+  transform: translateY(-2px); /* Subtle lift on hover */
+}
+
+.toggle-form {
+  background: none;
+  border: none;
+  color: #1877f2;
+  font-size: 14px;
+  margin-top: 1rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.toggle-form:hover {
+  color: #166fe5;
+}
+
+/* ---------------------------------------------------------- */
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+Open ssl support 
+$env:NODE_OPTIONS="--openssl-legacy-provider"
