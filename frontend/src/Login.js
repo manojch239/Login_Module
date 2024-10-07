@@ -3,7 +3,6 @@ import { useEffect } from "react"
 import { message } from 'antd';
 //import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { message } from 'antd';
 
 function Login() {
   const [username, setUsername] = useState('');

@@ -93,7 +93,6 @@ function ProtectedPage() {
                 });
                 const data = await response.json();
 
-<<<<<<< HEAD
                 // const data = await response.json();
                 console.log(data)
                 // if (!data.status === "success"){
@@ -107,11 +106,6 @@ function ProtectedPage() {
                 }
                 else{
                     console.log("Token verification failed")
-=======
-                if ("status" in data && data.status === "success") {
-                    message.success('Login successful!');
-                } else {
->>>>>>> antd_test
                     localStorage.removeItem('token');
                     navigate('/');
                 }
@@ -125,16 +119,6 @@ function ProtectedPage() {
     }, []);
 
     return (
-<<<<<<< HEAD
-            <div>
-                <div className='avatar' style={{position:'absolute',top: 0, right: 0,margin: '10px'}}>
-                    <Dropdown overlay={menu} trigger={['click']}>
-                        <Avatar size={48} icon={<UserOutlined />} style={{ cursor: 'pointer' }} />
-                    </Dropdown>
-                </div>
-                <div>Hello User, Welcome to the Protected Page</div>
-            </div>
-=======
         <Layout style={{ minHeight: '100vh' }}>
             <Sider collapsible>
                 <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
@@ -158,7 +142,7 @@ function ProtectedPage() {
             <Layout>
                 <Header style={{ background: '#fff', padding: 0 }}>
                     <div className='avatar' style={{ position: 'absolute', top: 0, right: 0, margin: '10px' }}>
-                        <Dropdown menu={menu} trigger={['click']}>
+                        <Dropdown overlay = {menu} trigger={['click']}>
                             <Avatar size={48} icon={<UserOutlined />} style={{ cursor: 'pointer' }} />
                         </Dropdown>
                     </div>
@@ -168,7 +152,6 @@ function ProtectedPage() {
                 </Content>
             </Layout>
         </Layout>
->>>>>>> antd_test
     );
 }
 
