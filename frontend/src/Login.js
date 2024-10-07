@@ -64,7 +64,7 @@ const validateForm = () => {
    } catch (error) {
       console.error('Login failed:', error);
       //setError(error.response?.data?.detail || 'An error occurred during login');
-      setError('An error occurred during login');
+      //setError('An error occurred during login');
       message.error('An error occurred during login')
 
     } 
