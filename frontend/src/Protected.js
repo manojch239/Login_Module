@@ -1,12 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
-import { useEffect } from "react"
-import { useNavigate } from "react-router-dom"
-import { Avatar,Dropdown,Menu,message } from 'antd';
-import { UserOutlined,DownOutlined } from '@ant-design/icons';
-//import axios from 'axios';
-//TODO : create an avatar in the protected page using ant d
-=======
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Layout, Menu, Avatar, Dropdown, message } from 'antd';
@@ -19,7 +11,6 @@ import {
     } from '@ant-design/icons';
 
 const { Header, Content, Sider } = Layout;
->>>>>>> antd_test
 
 
 // const {  UserOutlined  } = icons;
@@ -36,7 +27,6 @@ function ProtectedPage() {
         navigate('/');
     };
 
-<<<<<<< HEAD
 
     const handleMenuClick = (e) => {
         if (e.key === '1') {
@@ -47,15 +37,6 @@ function ProtectedPage() {
             // Navigate to settings page or handle settings action
         } else if (e.key === '3') {
             handleLogout(); // Logout action
-=======
-    const handleMenuClick = (e) => {
-        if (e.key === '1') {
-            console.log('Profile clicked');
-        } else if (e.key === '2') {
-            console.log('Settings clicked');
-        } else if (e.key === '3') {
-            handleLogout();
->>>>>>> antd_test
         }
     };
 
@@ -67,10 +48,6 @@ function ProtectedPage() {
         </Menu>
     );
 
-<<<<<<< HEAD
-
-=======
->>>>>>> antd_test
     useEffect(() => {
         const verifyToken = async () => {
             const token = localStorage.getItem('token');

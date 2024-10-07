@@ -26,11 +26,7 @@ function Login() {
 const validateForm = () => {
   if (!username || !password) {
     setError('Username and password are required');
-<<<<<<< HEAD
-    message.warning('Username and password are required')
-=======
     message.warning('Username and password are required');
->>>>>>> antd_test
     return false;
   }
   setError('');
